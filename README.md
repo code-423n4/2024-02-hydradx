@@ -41,7 +41,7 @@
 - Submit findings [using the C4 form](https://code4rena.com/contests/2024-02-hydradx/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
 - Starts February 02, 2024 20:00 UTC 
-- Ends March 22, 2024 20:00 UTC 
+- Ends March 1, 2024 20:00 UTC 
 
 ## Automated Findings / Publicly Known Issues
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
