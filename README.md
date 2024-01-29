@@ -104,19 +104,19 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 ```
 - If you have a public code repo, please share it here:  
-- How many contracts are in scope?:   
-- Total SLoC for these contracts?:  
-- How many external imports are there?:  
-- How many separate interfaces and struct definitions are there for the contracts within scope?:  
-- Does most of your code generally use composition or inheritance?:   
-- How many external calls?:   
-- What is the overall line coverage percentage provided by your tests?:
-- Is this an upgrade of an existing system?:
-- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): 
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:   
+- How many contracts are in scope?:   4
+- Total SLoC for these contracts?:  5980
+- How many external imports are there?: 0 
+- How many separate interfaces and struct definitions are there for the contracts within scope?: 20 
+- Does most of your code generally use composition or inheritance?:  Inheritance 
+- How many external calls?:   0
+- What is the overall line coverage percentage provided by your tests?: 80
+- Is this an upgrade of an existing system?: No
+- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): AMM
+- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:  Yes 
 - Please describe required context:   
-- Does it use an oracle?:  
-- Describe any novel or unique curve logic or mathematical models your code uses: 
+- Does it use an oracle?:  Yes; our own on chain oracle.
+- Describe any novel or unique curve logic or mathematical models your code uses: All assets are in one pool, each one paired with hub token which is essentially xyk pool. Additional math takes care of calculating asset in and out between traded assets
 - Is this either a fork of or an alternate implementation of another project?:   
 - Does it use a side-chain?:
 - Describe any specific areas you would like addressed:
