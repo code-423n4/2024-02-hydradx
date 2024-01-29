@@ -130,4 +130,4 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 ## Miscellaneous
 
-Employees of [SPONSOR NAME] and employees' family members are ineligible to participate in this audit.
+Employees of HydraDX and employees' family members are ineligible to participate in this audit.
