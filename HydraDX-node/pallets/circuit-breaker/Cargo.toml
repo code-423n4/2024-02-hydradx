@@ -1,0 +1,58 @@
+[package]
+name = "pallet-circuit-breaker"
+version = "1.1.19"
+authors = ["GalacticCouncil <hydradx@galacticcouncil.io>"]
+edition = "2021"
+license = "Apache-2.0"
+homepage = 'https://github.com/galacticcouncil/hydradx-node'
+repository = 'https://github.com/galacticcouncil/hydradx-node'
+description = "Circuit breakers for AMMs"
+
+[package.metadata.docs.rs]
+targets = ['x86_64-unknown-linux-gnu']
+
+[dependencies]
+serde = { features = ["derive"], optional = true, version = "1.0.136" }
+codec = { default-features = false, features = ["derive"], package = "parity-scale-codec", version = "3.4.0" }
+scale-info = { version = "2.1.1", default-features = false, features = ["derive"] }
+
+# Substrate dependencies
+frame-benchmarking = { workspace = true, optional = true}
+frame-support = { workspace = true }
+frame-system = { workspace = true }
+sp-io = { workspace = true }
+sp-runtime = { workspace = true }
+sp-std = { workspace = true }
+sp-core = { workspace = true }
+
+
+# Warehouse
+hydradx-traits = { workspace = true }
+
+[dev-dependencies]
+pallet-omnipool = { workspace = true }
+pallet-balances = { workspace = true }
+orml-tokens = { workspace = true }
+orml-traits = { workspace = true }
+hydra-dx-math = { workspace = true }
+test-utils = { workspace = true }
+pretty_assertions = "1.2.1"
+test-case = "3.0.0"
+
+[features]
+default = ['std']
+std = [
+    'codec/std',
+    'frame-support/std',
+    'frame-system/std',
+    'serde/std',
+    'scale-info/std',
+    'pallet-balances/std',
+    'orml-tokens/std',
+]
+runtime-benchmarks = [
+  "frame-benchmarking",
+  "frame-support/runtime-benchmarks",
+  "frame-system/runtime-benchmarks",
+]
+try-runtime = [ "frame-support/try-runtime" ]
