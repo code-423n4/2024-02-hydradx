@@ -137,7 +137,7 @@ cargo test ema -p hydra-dx-math
 ```
 
 ## Running integration tests
-These pallets focus on integration of a pallet in HydraDX runtime, interactions with other pallets and configuration.
+These tests focus on integration of a pallet in HydraDX runtime, interactions with other pallets and configuration.
 ```bash
 cargo test -p runtime-integration-tests
 ```
