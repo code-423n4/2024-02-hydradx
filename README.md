@@ -1,31 +1,3 @@
-# Repo setup
-
-## ⭐️ Sponsor: Add code to this repo
-
-- [ ] Create a PR to this repo with the below changes:
-- [ ] Provide a self-contained repository with working commands that will build (at least) all in-scope contracts, and commands that will run tests producing gas reports for the relevant contracts.
-- [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
-- [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 48 business hours prior to audit start time.**
-- [ ] Be prepared for a 🚨code freeze🚨 for the duration of the audit — important because it establishes a level playing field. We want to ensure everyone's looking at the same code, no matter when they look during the audit. (Note: this includes your own repo, since a PR can leak alpha to our wardens!)
-
-
----
-
-## ⭐️ Sponsor: Edit this `README.md` file
-
-- [ ] Modify the contents of this `README.md` file. Describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2022-08-foundation#readme))
-- [ ] Review the Gas award pool amount. This can be adjusted up or down, based on your preference - just flag it for Code4rena staff so we can update the pool totals across all comms channels.
-- [ ] Optional / nice to have: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
-- [ ] [This checklist in Notion](https://code4rena.notion.site/Key-info-for-Code4rena-sponsors-f60764c4c4574bbf8e7a6dbd72cc49b4#0cafa01e6201462e9f78677a39e09746) provides some best practices for Code4rena audits.
-
-## ⭐️ Sponsor: Final touches
-- [ ] Review and confirm the details in the section titled "Scoping details" and alert Code4rena staff of any changes.
-- [ ] Review and confirm the list of in-scope files in the `scope.txt` file in this directory.  Any files not listed as "in scope" will be considered out of scope for the purposes of judging, even if the file will be part of the deployed contracts.
-- [ ] Check that images and other files used in this README have been uploaded to the repo as a file and then linked in the README using absolute path (e.g. `https://github.com/code-423n4/yourrepo-url/filepath.png`)
-- [ ] Ensure that *all* links and image/file paths in this README use absolute paths, not relative paths
-- [ ] Check that all README information is in markdown format (HTML does not render on Code4rena.com)
-- [ ] Remove any part of this template that's not relevant to the final version of the README (e.g. instructions in brackets and italic)
-- [ ] Delete this checklist and all text above the line below when you're ready.
 
 ---
 
@@ -46,87 +18,130 @@
 ## Automated Findings / Publicly Known Issues
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
 
-[ ⭐️ SPONSORS: Are there any known issues or risks deemed acceptable that shouldn't lead to a valid finding? If so, list them here. ]
-
-
 # Overview
 
-[ ⭐️ SPONSORS: add info here ]
+## HydraDX
+HydraDX is a next-gen DeFi protocol which is designed to bring an ocean of liquidity to Polkadot. Our tool for the job the HydraDX Omnipool - an innovative Automated Market Maker (AMM) which unlocks unparalleled efficiencies by combining all assets in a single trading pool.
+
+## Main features in the audit scope
+- Omnipool
+  - Omnipool is type of AMM where all assets are pooled together into one single pool.
+- Stableswap
+  - Curve style AMM, designed to provide highly efficient and low-slippage trades for stablecoins.
+- Oracle
+  - This pallet provides exponential moving average (EMA) oracles of different periods for price, volume and liquidity for a combination of source and asset pair based on data coming in from different sources.
+- Circuit breaker
+  - Provides tracking and limiting the percentage of the liquidity of a pool that can be traded (net volume), added or removed in a single block.
+
 
 ## Links
 
-- **Previous audits:** 
-- **Documentation:**
-- **Website:**
-- **Twitter:** 
+- **Previous audits:**  Details can be found [here](https://github.com/galacticcouncil/HydraDX-security/)
+- **Documentation:** [HydraDX Docs](https://docs.hydradx.io/)
+- **Website:** [hydradx.io](https://hydradx.io/)
+- **Twitter:** [hydra_dx](https://twitter.com/hydra_dx)
 - **Discord:** 
 
 
 # Scope
 
-[ ⭐️ SPONSORS: add scoping and technical details here ]
+| Contract                                                                                                                                   | SLOC | Purpose                                | Libraries used |  
+|--------------------------------------------------------------------------------------------------------------------------------------------|------|----------------------------------------|----------------|
+| [Omnipool](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/omnipool)                                          |      | Omnipool pallet                        | |
+| [omnipool/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/omnipool/src/lib.rs)               | 1367 | Omnipool pallet - main pallet's file   |                |
+| [omnipool/src/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/omnipool/src/types.rs)           | 233  | Omnipool pallet - types                |                |
+| [omnipool/src/traits.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/omnipool/src/traits.rs)         | 162  | Omnipool pallet - traits               |                |
+| [Omnipool Math](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/math/src/omnipool)                                    |      | Omnipool math                          |                |
+| [math/src/omnipool/math.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/omnipool/math.rs)           | 409  | Omnipool math - math implementation    |                |
+| [math/src/omnipool/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/omnipool/types.rs)         | 226  | Omnipool math - types                  |                |
+| [Stableswap](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/stableswap)                                      |      | Stableswap pallet                      |                |
+| [stableswap/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/stableswap/src/lib.rs)           | 871  | Stableswap pallet - main pallet's file |                |
+| [stableswap/src/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/stableswap/src/types.rs)       | 136  | Stableswap pallet - types              |                |
+| [Stableswap Math](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/math/src/stableswap)                                |      | Stableswap Math                        |                |
+| [math/src/stableswap/math.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/stableswap/math.rs)       | 670  | Stableswap Math - math implementation  |                |
+| [math/src/stableswap/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/stableswap/types.rs)     | 25   | Stableswap Math - types                |                |
+| [EMA Oracle](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/ema-oracle)                                      |      | Ema on-chain oracle                    |                |
+| [ema-oracle/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/ema-oracle/src/lib.rs)           | 395  | Ema oracle pallet - main pallet's file |                |
+| [ema-oracle/src/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/ema-oracle/src/types.rs)       | 154  | Ema oracle pallet - types              |                |
+| [Ema Oracle Math](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/math/src/ema)                                       |      | Omnipool math                          |                |
+| [math/src/ema/math.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/ema/math.rs)                     | 174  | Omnipool math - math implementation    |                |
+| [Circuit breaker](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/circuit-breaker)                            |      | Circuit breaker                        |                |
+| [circuit-breaker/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/circuit-breaker/src/lib.rs) | 451  | Circuit breaker- main pallet's file    |                |
 
-- [ ] In the table format shown below, provide the name of each contract and:
-  - [ ] source lines of code (excluding blank lines and comments) in each *For line of code counts, we recommend running prettier with a 100-character line length, and using [cloc](https://github.com/AlDanial/cloc).* 
-  - [ ] external contracts called in each
-  - [ ] libraries used in each
-
-*List all files in scope in the table below (along with hyperlinks) -- and feel free to add notes here to emphasize areas of focus.*
-
-| Contract | SLOC | Purpose | Libraries used |  
-| ----------- | ----------- | ----------- | ----------- |
-| [contracts/folder/sample.sol](https://github.com/code-423n4/repo-name/blob/contracts/folder/sample.sol) | 123 | This contract does XYZ | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+Total SLOC: 5273
 
 ## Out of scope
 
-*List any files/contracts that are out of scope for this audit.*
+Only files listed above are in scope. Everything else is out of scope.
 
 # Additional Context
-
-- [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
-- [ ] Please list specific ERC20 that your protocol is anticipated to interact with. Could be "any" (literally anything, fee on transfer tokens, ERC777 tokens and so forth) or a list of tokens you envision using on launch.
-- [ ] Please list specific ERC721 that your protocol is anticipated to interact with.
-- [ ] Which blockchains will this code be deployed to, and are considered in scope for this audit?
-- [ ] Please list all trusted roles (e.g. operators, slashers, pausers, etc.), the privileges they hold, and any conditions under which privilege escalation is expected/allowable
-- [ ] In the event of a DOS, could you outline a minimum duration after which you would consider a finding to be valid? This question is asked in the context of most systems' capacity to handle DoS attacks gracefully for a certain period.
-- [ ] Is any part of your implementation intended to conform to any EIP's? If yes, please list the contracts in this format: 
-  - `Contract1`: Should comply with `ERC/EIPX`
-  - `Contract2`: Should comply with `ERC/EIPY`
+Refer to documentation in each pallet for further details.
 
 ## Attack ideas (Where to look for bugs)
-*List specific areas to address - see [this blog post](https://medium.com/code4rena/the-security-council-elections-within-the-arbitrum-dao-a-comprehensive-guide-aa6d001aae60#9adb) for an example*
+Refer to HydraDX security repository for possible attack vectors [Here](https://github.com/galacticcouncil/HydraDX-security/blob/main/threat_modelling.md)
 
 ## Main invariants
-*Describe the project's main invariants (properties that should NEVER EVER be broken).*
+Refer to HydraDX security repository that describes omnipool's and stableswap invariants [Here](https://github.com/galacticcouncil/HydraDX-security/tree/main/invariants)
 
-## Scoping Details 
-[ ⭐️ SPONSORS: please confirm/edit the information below. ]
-
-```
-- If you have a public code repo, please share it here:  
-- How many contracts are in scope?:   4
-- Total SLoC for these contracts?:  5980
-- How many external imports are there?: 0 
-- How many separate interfaces and struct definitions are there for the contracts within scope?: 20 
-- Does most of your code generally use composition or inheritance?:  Inheritance 
-- How many external calls?:   0
-- What is the overall line coverage percentage provided by your tests?: 80
-- Is this an upgrade of an existing system?: No
-- Check all that apply (e.g. timelock, NFT, AMM, ERC20, rollups, etc.): AMM
-- Is there a need to understand a separate part of the codebase / get context in order to audit this part of the protocol?:  Yes 
-- Please describe required context:   
-- Does it use an oracle?:  Yes; our own on chain oracle.
-- Describe any novel or unique curve logic or mathematical models your code uses: All assets are in one pool, each one paired with hub token which is essentially xyk pool. Additional math takes care of calculating asset in and out between traded assets
-- Is this either a fork of or an alternate implementation of another project?:   
-- Does it use a side-chain?:
-- Describe any specific areas you would like addressed:
-```
+# Running a local test node
+Refer to HydraDx-node [readme](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/README.md) for details.
 
 # Tests
 
-*Provide every step required to build the project from a fresh git clone, as well as steps to run the tests with a gas report.* 
+## Setting up Rust/Substrate environment
+Details in [readme](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/README.md)
 
-*Note: Many wardens run Slither as a first pass for testing.  Please document any known errors with no workaround.* 
+## Getting the code
+Clone this repository
+```bash
+git clone https://github.com/code-423n4/2024-02-hydradx/
+```
+
+## Running pallet tests
+Omnipool
+```bash
+cargo test -p pallet-omnipool 
+```
+
+Stableswap
+```bash
+cargo test -p pallet-stableswap 
+```
+
+EMA Oracle
+```bash
+cargo test -p pallet-ema-oracle 
+```
+
+Circuit breaker
+```bash
+cargo test -p pallet-circuit-breaker 
+```
+
+## Running math tests
+You can focus on math for each pallet separately.
+
+Omnipool math
+```bash
+cargo test omnipool -p hydra-dx-math
+```
+
+Stableswap math
+```bash
+cargo test stableswap -p hydra-dx-math
+```
+
+EMA Oracle math
+```bash
+cargo test ema -p hydra-dx-math
+```
+
+## Running integration tests
+These pallets focus on integration of a pallet in HydraDX runtime, interactions with other pallets and configuration.
+```bash
+cargo test -p runtime-integration-tests
+```
+
 
 ## Miscellaneous
 
