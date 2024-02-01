@@ -1,0 +1,32 @@
+[package]
+name = "primitives"
+version = "6.0.2"
+authors = ["GalacticCouncil"]
+edition = "2021"
+repository = "https://github.com/galacticcouncil/HydraDX-node"
+
+[dependencies]
+codec = { default-features = false, features = ["derive"], package = "parity-scale-codec", version = "3.4.0" }
+scale-info = { version = "2.3.1", default-features = false, features = ["derive"] }
+serde = { features = ["derive"], optional = true, version = "1.0.136" }
+hex-literal = {version = '0.3.4'}
+static_assertions = "1.1.0"
+
+# Substrate dependencies
+frame-support = { workspace = true }
+sp-core = { workspace = true }
+sp-std = { workspace = true }
+
+# Polkadot dependencies
+polkadot-primitives = { workspace = true }
+
+[features]
+default = ["std"]
+std = [
+    "serde",
+    "codec/std",
+    "scale-info/std",
+    "frame-support/std",
+    "polkadot-primitives/std",
+    "sp-core/std",
+]
