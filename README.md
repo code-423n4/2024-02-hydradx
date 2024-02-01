@@ -77,6 +77,20 @@ Only files listed above are in scope. Everything else is out of scope.
 # Additional Context
 Refer to documentation in each pallet for further details.
 
+
+## Runtime configuration
+Note that each pallet is integrated into HydraDX runtime and can interact with other pallets. 
+Each pallet is configured in runtime and this configuration should be taken into account.
+
+Wardens can assume that runtime is configured correctly and that pallets are configured correctly.
+
+Example:
+Omnipool has `AuthorityOrigin` parameter which allows only configured origin to perform certain actions.
+That means reports such as `if origin is not configured correctly, it can lead to ...` are not valid.
+
+However, findings on possible misconfiguration of pallets in scope will be considered.
+
+
 ## Attack ideas (Where to look for bugs)
 Refer to HydraDX security repository for possible attack vectors [Here](https://github.com/galacticcouncil/HydraDX-security/blob/main/threat_modelling.md)
 
@@ -84,7 +98,7 @@ Refer to HydraDX security repository for possible attack vectors [Here](https://
 Refer to HydraDX security repository that describes omnipool's and stableswap invariants [Here](https://github.com/galacticcouncil/HydraDX-security/tree/main/invariants)
 
 # Running a local test node
-Refer to HydraDx-node [readme](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/README.md) for details.
+Refer to HydraDX-node [readme](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/README.md) for details.
 
 # Tests
 
@@ -96,6 +110,11 @@ Clone this repository
 ```bash
 git clone https://github.com/code-423n4/2024-02-hydradx/
 ```
+
+Enter into the directory
+```bash
+cd HydraDX-node
+````
 
 ## Running pallet tests
 Omnipool
