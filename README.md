@@ -45,28 +45,28 @@ HydraDX is a next-gen DeFi protocol which is designed to bring an ocean of liqui
 
 # Scope
 
-| Contract                                                                                                                                   | SLOC | Purpose                                | Libraries used |  
-|--------------------------------------------------------------------------------------------------------------------------------------------|------|----------------------------------------|----------------|
-| [Omnipool](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/omnipool)                                          |      | Omnipool pallet                        | |
-| [omnipool/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/omnipool/src/lib.rs)               | 1367 | Omnipool pallet - main pallet's file   |                |
-| [omnipool/src/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/omnipool/src/types.rs)           | 233  | Omnipool pallet - types                |                |
-| [omnipool/src/traits.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/omnipool/src/traits.rs)         | 162  | Omnipool pallet - traits               |                |
-| [Omnipool Math](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/math/src/omnipool)                                    |      | Omnipool math                          |                |
-| [math/src/omnipool/math.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/omnipool/math.rs)           | 409  | Omnipool math - math implementation    |                |
-| [math/src/omnipool/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/omnipool/types.rs)         | 226  | Omnipool math - types                  |                |
-| [Stableswap](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/stableswap)                                      |      | Stableswap pallet                      |                |
-| [stableswap/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/stableswap/src/lib.rs)           | 871  | Stableswap pallet - main pallet's file |                |
-| [stableswap/src/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/stableswap/src/types.rs)       | 136  | Stableswap pallet - types              |                |
-| [Stableswap Math](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/math/src/stableswap)                                |      | Stableswap Math                        |                |
-| [math/src/stableswap/math.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/stableswap/math.rs)       | 670  | Stableswap Math - math implementation  |                |
-| [math/src/stableswap/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/stableswap/types.rs)     | 25   | Stableswap Math - types                |                |
-| [EMA Oracle](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/ema-oracle)                                      |      | Ema on-chain oracle                    |                |
-| [ema-oracle/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/ema-oracle/src/lib.rs)           | 395  | Ema oracle pallet - main pallet's file |                |
-| [ema-oracle/src/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/ema-oracle/src/types.rs)       | 154  | Ema oracle pallet - types              |                |
-| [Ema Oracle Math](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/math/src/ema)                                       |      | Omnipool math                          |                |
-| [math/src/ema/math.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/math/src/ema/math.rs)                     | 174  | Omnipool math - math implementation    |                |
-| [Circuit breaker](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/circuit-breaker)                            |      | Circuit breaker                        |                |
-| [circuit-breaker/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/pallets/circuit-breaker/src/lib.rs) | 451  | Circuit breaker- main pallet's file    |                |
+| Contract                                                                                                                                  | SLOC | Purpose                                | Libraries used |  
+|-------------------------------------------------------------------------------------------------------------------------------------------|------|----------------------------------------|----------------|
+| [Omnipool](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/omnipool)                                         |      | Omnipool pallet                        | |
+| [omnipool/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/pallets/omnipool/src/lib.rs)               | 1367 | Omnipool pallet - main pallet's file   |                |
+| [omnipool/src/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/pallets/omnipool/src/types.rs)          | 233  | Omnipool pallet - types                |                |
+| [omnipool/src/traits.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/pallets/omnipool/src/traits.rs)        | 162  | Omnipool pallet - traits               |                |
+| [Omnipool Math](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/math/src/omnipool)                                   |      | Omnipool math                          |                |
+| [math/src/omnipool/math.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/math/src/omnipool/math.rs)          | 409  | Omnipool math - math implementation    |                |
+| [math/src/omnipool/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/math/src/omnipool/types.rs)        | 226  | Omnipool math - types                  |                |
+| [Stableswap](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/stableswap)                                     |      | Stableswap pallet                      |                |
+| [stableswap/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/pallets/stableswap/src/lib.rs)          | 871  | Stableswap pallet - main pallet's file |                |
+| [stableswap/src/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/pallets/stableswap/src/types.rs)      | 136  | Stableswap pallet - types              |                |
+| [Stableswap Math](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/math/src/stableswap)                               |      | Stableswap Math                        |                |
+| [math/src/stableswap/math.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/math/src/stableswap/math.rs)      | 670  | Stableswap Math - math implementation  |                |
+| [math/src/stableswap/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/math/src/stableswap/types.rs)    | 25   | Stableswap Math - types                |                |
+| [EMA Oracle](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/ema-oracle)                                     |      | Ema on-chain oracle                    |                |
+| [ema-oracle/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/pallets/ema-oracle/src/lib.rs)          | 395  | Ema oracle pallet - main pallet's file |                |
+| [ema-oracle/src/types.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/pallets/ema-oracle/src/types.rs)      | 154  | Ema oracle pallet - types              |                |
+| [Ema Oracle Math](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/math/src/ema)                                      |      | Omnipool math                          |                |
+| [math/src/ema/math.rs](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/math/src/ema/math.rs)                    | 174  | Omnipool math - math implementation    |                |
+| [Circuit breaker](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/circuit-breaker)                           |      | Circuit breaker                        |                |
+| [circuit-breaker/src/lib.rs](https://github.com/code-423n4/2024-02-hydradx/tree/main/HydraDX-node/pallets/circuit-breaker/src/lib.rs) | 451  | Circuit breaker- main pallet's file    |                |
 
 Total SLOC: 5273
 
@@ -98,12 +98,12 @@ Refer to HydraDX security repository for possible attack vectors [Here](https://
 Refer to HydraDX security repository that describes omnipool's and stableswap invariants [Here](https://github.com/galacticcouncil/HydraDX-security/tree/main/invariants)
 
 # Running a local test node
-Refer to HydraDX-node [readme](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/README.md) for details.
+Refer to HydraDX-node [readme](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/README.md) for details.
 
 # Tests
 
 ## Setting up Rust/Substrate environment
-Details in [readme](https://github.com/code-423n4/2024-02-hydradx/blob/tree/main/HydraDX-node/README.md)
+Details in [readme](https://github.com/code-423n4/2024-02-hydradx/blob/main/HydraDX-node/README.md)
 
 ## Getting the code
 Clone this repository
