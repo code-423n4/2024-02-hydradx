@@ -1,0 +1,1340 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q1-2024 / hydradx-feb2
+==============================================================
+
+[02/01/2024 20:09] kartoonjoy (pinned)
+👋 Hello and welcome to the audit channel for the $100,000 in USDC **HydraDX** audit!
+
+📆 Audit opens 02/02/2024 20:00 (20:00 UTC) and runs through 03/01/2024 20:00 (20:00 UTC) (28 days).
+
+Please give a warm welcome to the HydraDX team, particularly @cl0w and @Martin, who will be available for questions either here in the channel or via a PRIVATE thread in the CET timezone(s).
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/audits/2024-02-hydradx#top
+
+{Embed}
+https://code4rena.com/audits/2024-02-hydradx
+HydraDX | Code4rena
+$100,000 in USDC
+2 February 8:00 PM—1 March 8:00 PM
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/c4-og-banner-59F8E.png
+
+{Reactions}
+👍 (11) 🦀 (3) 
+
+[02/01/2024 20:09] kartoonjoy
+Pinned a message.
+
+
+[02/03/2024 06:54] carrotsmuggler
+why is my folder 49 gigs ahaha, need new hard drive for audit
+
+{Reactions}
+😂 (9) 
+
+[02/03/2024 07:23] mctoady
+Can't see this cleared up anywhere:
+Is this codebase the same as the one already live on Polkadot?
+
+
+[02/03/2024 10:26] cl0w
+Yes
+
+{Reactions}
+👍 
+
+[02/03/2024 11:30] castle_chain
+I got this 3 problems while building the project .. how can I fix them ?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/Screenshot_from_2024-02-03_06-29-06-0C42E.png
+
+
+[02/03/2024 11:31] cl0w
+these look like warnings that shouldn't affect the build
+
+
+[02/03/2024 11:36] cl0w
+A tip for wardens: after creating a local fork of the mainnet chain using `chopsticks`, you can use our testnet UI and connect to your local RPC. You should be able to click around and make transactions using your mocked account
+
+Just click in the bottom right corner where the block height is displayed
+https://testnet-app.hydradx.io/trade/swap
+
+{Reactions}
+chefskiss 
+
+[02/03/2024 11:37] castle_chain
+I got this from the rust analyzer
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/Screenshot_from_2024-02-03_06-32-40-24D25.png
+
+
+[02/03/2024 11:38] cl0w
+this is related to your local setup, check on stackoverflow for suggestions
+
+{Reactions}
+👍 
+
+[02/03/2024 11:39] qiuhaoli
+try install m4 and protobuf-compiler, libprotobuf-dev and reopen vscode
+
+
+[02/03/2024 11:40] qiuhaoli
+I got some similar errors and solved by install these local packages
+
+{Reactions}
+🥰 
+
+[02/03/2024 11:58] castle_chain
+thanks the problem is solved
+
+{Reactions}
+👏 
+
+[02/03/2024 12:15] theschnilch
+I always get this error when I try to use chopsticks. Does anyone have a solution for this?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/ChopsticksError-EBB40.png
+
+
+[02/04/2024 20:14] castle_chain
+what does this weight mean ? is it the weight depend on it the user will pay fees on each transaction ? or it has a different meaning ?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/Screenshot_from_2024-02-04_15-12-58-76948.png
+
+
+[02/04/2024 20:15] castle_chain
+@cl0w @Martin
+
+
+[02/04/2024 20:21] ultimate_outsider
+yes.substrate weight is basically how much the extrinsic takes of the total block weight. 
+
+and from the weight , the tx fee is calculated - https://docs.substrate.io/reference/how-to-guides/weights/calculate-fees/
+
+
+[02/04/2024 20:22] ultimate_outsider
+https://docs.substrate.io/build/tx-weights-fees/
+
+
+[02/04/2024 20:46] castle_chain
+thanks , 
+I want also to ask about the origin , what is it , I saw a detailed describtion about all the parameters but not the origin ?
+
+
+[02/04/2024 20:49] ultimate_outsider
+every extrinsic ( or dispatchable function )  must have origin
+
+it indicates where the call came from.  substrate has 3 possible origin: Root, Signed(account) and None.  and then custom origins. 
+
+more info: https://docs.substrate.io/build/origins/
+
+
+[02/04/2024 21:05] theschnilch
+Is it possible for a user to get LRNA? @Martin @cl0w
+
+
+[02/04/2024 21:07] ultimate_outsider
+yes.  only when you remove liquidity, in some cases you can receive some lrna as compensation - depends on difference between current price and price when liquidity was added. 
+
+check remove liquidity for details
+
+{Reactions}
+👍 (2) 
+
+[02/04/2024 21:21] ultimate_outsider (pinned)
+perhaps one thing worth mentioning as it is not mentioned anywhere ( i think) and it is  not obvious unless you check runtime itself. 
+
+~~you can send tokens directly to omnipool account except LRNA.  transferring lrna to omnipool account is explicitly filtered in the runtime. such transfers fail with CallFiltered error~~
+
+update: you cannot send any tokens to omnipool account - all omnipools assets are filtered
+
+{Reactions}
+👍 (4) 
+
+[02/05/2024 08:36] kartoonjoy
+Pinned a message.
+
+
+[02/05/2024 17:15] castle_chain
+hey , 
+I want to ask about the function try_mutate()  , what does this function do ? I understood that this function take the result from the closure and then update the storage slot , it this right ?  :https://github.com/code-423n4/2024-02-hydradx/blob/603187123a20e0cb8a7ea85c6a6d718429caad8d/HydraDX-node/pallets/omnipool/src/lib.rs#L1679
+
+
+[02/05/2024 17:18] castle_chain
+I want also to ask about 
+```
+                <HubAssetImbalance<T>>::try_mutate(|current_imbalance| -> DispatchResult {
+                        *current_imbalance = match delta_imbalance {
+```
+where this current_imbalance comes from , should it get queried first and then be used ?
+
+
+[02/05/2024 17:54] cl0w
+it mutates the value if the closure returns Ok: https://paritytech.github.io/polkadot-sdk/master/frame_support/storage/trait.StorageValue.html#tymethod.try_mutate
+
+{Embed}
+https://paritytech.github.io/polkadot-sdk/master/frame_support/storage/trait.StorageValue.html
+StorageValue in frame_support::storage - Rust
+A trait for working with macro-generated storage values under the substrate storage API.
+
+{Reactions}
+👍 (2) 
+
+[02/05/2024 17:54] cl0w
+current_imbalance is the value from storage which you are mutating
+
+
+[02/05/2024 18:42] castle_chain
+what does this `into()` method do ?
+https://github.com/code-423n4/2024-02-hydradx/blob/603187123a20e0cb8a7ea85c6a6d718429caad8d/HydraDX-node/pallets/omnipool/src/lib.rs#L528
+
+
+[02/05/2024 19:06] theschnilch
+With the `.into()` function, `state` (Type: AssetState) and `reserve` (Type: u128) are stored together in `reserve_state` (Type: AssetReserveState). How the `.into()` function casts the types AssetState and u128 in AssetReserveState is defined in the implementation of the `from()` function: https://github.com/code-423n4/2024-02-hydradx/blob/603187123a20e0cb8a7ea85c6a6d718429caad8d/HydraDX-node/pallets/omnipool/src/types.rs#L275C1-L289C2
+
+{Reactions}
+👍 
+
+[02/06/2024 00:35] 0xtaylor
+Just to sanity check, have you `git pull`ed the latest master?
+
+
+[02/06/2024 00:36] 0xtaylor
+Also, do you have some alias set for `npx` that might be modifying your cmd?
+
+
+[02/06/2024 00:38] 0xtaylor
+Something else to check is that `$LOG_LEVEL` is not set
+
+
+[02/06/2024 00:39] 0xtaylor
+weird it's breaking on you there though becuase it should default to INFO if it can't unwrap the value https://github.com/AcalaNetwork/chopsticks/blob/0d440a29d7046a6e3c8cb3c8bcd908f60a60b460/executor/src/lib.rs#L15-L16
+
+
+[02/06/2024 16:09] theschnilch
+I reinstalled chopsticks with the latest master and also checked that npx doesn't have an alias and that LOG_LEVEL is not set but I still get the same error. I also tried it with yarn but I get the same error
+
+
+[02/07/2024 15:23] j4x_98
+I'd have a question regarding the OOS definition in Runtime configuration. At the start it states "Wardens can assume that runtime is configured correctly and that pallets are configured correctly." while later on it states "However, findings on possible misconfiguration of pallets in scope will be considered." Which seems to contradict the earlier statement. 
+
+Should we now assume that all pallet parameters are correctly configured or not?
+
+
+[02/07/2024 15:30] 0xarsi
+had the same question, which one is it lol
+
+
+[02/07/2024 17:18] ultimate_outsider
+what we really wanted to say is this 
+
+you should take into account the runtime configuration when doiing your testing, because if you run pallet's tests - it does not use runtime configuration, it has a mock runtime.  You can find an issue when writing a test, but that might not work with runtime config. 
+
+So, you should work with that configuration. 
+
+however, if you find a possible exploit and the reason would be a problem in configuration, then yes, it is valid. 
+
+we wanted to avoid  reports such as "If you change this parameter to this, it can be exploited in this way. And something should be done about that. Here is recommendation". 
+
+hope it is clear.
+
+{Reactions}
+👍 (4) 
+
+[02/07/2024 17:25] j4x_98
+Thanks for explaining it more in detail
+
+
+[02/08/2024 08:44] _3doc_
+GM. Shopping for help on a setup issue:
+
+After successful execution of the steps:
+```
+curl https://getsubstrate.io -sSf | bash -s -- --fast
+cargo build --release
+```
+I get a failure on:
+```
+npx @acala-network/chopsticks@latest --config=launch-configs/chopsticks/hydradx.yml 
+
+Error: ENOENT: no such file or directory, open 'target/release/hydradx_runtime.compact.compressed.wasm'
+```
+
+Indeed that file was not output from the `cargo build --release` cmd.  Thoughts/suggestions? 🙏
+
+
+[02/08/2024 09:01] ultimate_outsider
+In the configs/chopsticks/hydradx.yml
+
+Comment out or delete wasm-overrride
+
+It is not needed unless you want to include custom code, which you probably don't need
+
+{Reactions}
+🙏 ❤️ 
+
+[02/08/2024 09:03] _3doc_
+worked like a charm
+```
+[10:02:30.086] INFO: HydraDX RPC listening on port 8000
+    app: "chopsticks"
+```
+
+
+[02/08/2024 09:03] ultimate_outsider (pinned)
+actually there is thing to add, which was due to recent upgrade and this config was not updated. here is correct one you can all use
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/hydradx.yml-AA929.txt
+
+{Reactions}
+👍 (2) 
+
+[02/08/2024 11:53] kartoonjoy
+Pinned a message.
+
+
+[02/08/2024 18:44] lalanda
+```pub fn process_hub_amount(amount: Balance, dest: &T::AccountId) -> DispatchResult {
+        if amount > Balance::zero() {
+            // If transfers fails and the amount is less than ED, it failed due to ED limit, so we simply burn it
+            if let Err(e) = T::Currency::transfer(T::HubAssetId::get(), &Self::protocol_account(), dest, amount) {
+if amount < 400_000_000u128 {
+``` what does 'ED' mean here?
+
+
+[02/08/2024 18:55] ultimate_outsider
+Existential deposit
+
+{Reactions}
+🙏🏻 
+
+[02/08/2024 21:07] ultimate_outsider (pinned)
+there was some  questions regarding omnipool math. 
+
+so I figured -  if you enjoy looking at math formulas, crazy math symbols and fear inducing equations, you can find all Omnipool Math spec here - divided by operations:
+
+https://github.com/galacticcouncil/HydraDX-simulations/tree/main/hydradx/spec
+
+{Reactions}
+💪 ❤️ (2) 
+
+[02/08/2024 22:03] kartoonjoy
+Pinned a message.
+
+
+[02/09/2024 07:37] cosine_function
+Hello do the Stableswap and Omnipool pallets depend on each other, or could one of them be reviewed without looking into the other?
+
+
+[02/09/2024 07:53] ultimate_outsider
+they are standalone AMMs, they dont know about each other . You could use one or the other. 
+
+What we do though, we add stable share token to the omnipool as another asset - so you can actually trade the stable share token with other omnipool token.  It is beneficial because we have on chain routing, so when you specify that you want to buy a stablecoiin such as egUSDC, whcih is in  stablepool only, and you want to trade it for eg DOT ( which is only in omnipool ) - you can call router's sell and it will do some dark magic and you receive USDC.  no need to go first to omnipool, trade DOT for something and then go to stablepool and trade it with desired USDC.
+
+{Reactions}
+👍 (4) 
+
+[02/09/2024 07:56] cosine_function
+Thank you!
+
+
+[02/13/2024 06:21] alix40
+I have a general questions regarding substrate, so pallets in their config define some constants which are explicitly declared in `runtime/hydradx/src/assets.rs`, So basically if the protocol maintainers decide to change the value of a constant (e.g MinTradingLimit) they simply need to adjust the assets.rs file and redeploy the parachain ? or is it not possible anymore to change the value of constants ?
+
+
+[02/13/2024 07:17] ultimate_outsider
+It is so called upgrade. 
+
+You can change whatever you want and upgrade your chain. 
+
+However, if you don't have sudo/root access (which hydradx does not have)... Upgrade is governance action. That means such upgrade must be approved by majority of HDX holders.
+
+
+[02/13/2024 10:25] alix40
+Thanks for the answer! , i am  having trouble finding the Hydradx native token and the hubToken Implementations, is it possible to point them in the code, or at least how they are implemented? In solidity there is like smart contracts, here in substrate there are mainly pallets. I assume Each token would need its own pallet, with its own storage variables defined. Those pallets would in turn  expose functions, to be called by the accounts. Please also correct me if i am wrong
+
+
+[02/13/2024 10:45] ultimate_outsider
+It does not work here like you used to from evm world. 
+
+Let me prepare an explanation..give me few mins.
+
+
+[02/13/2024 10:48] alix40
+much appreciated !
+
+
+[02/13/2024 11:10] ultimate_outsider
+Each parachain can choose how to want to internally represent an asset/token.
+
+In HydraDX, we use simple u32 integer. So each token which we have on our chain has a unique identifier (u32 type).
+
+Other chains can choose to do it different way - eg Acala ( next audit contest) uses an enum.
+
+Then you choose how you want to manage your assets - what would keep the information abuot issuance, account balance, transfers, minting, burning etc.
+
+You do this by choosing a pallet which is designed to handle this. Such pallets expose the functionality ( like you used from the token smart contract).
+But here, one pallet takes care of all the assets ( instead of having a contract for each token).
+
+In hydraDX:
+For native asset -we use `pallet-balances`
+for foreign assets we use `orml-tokens ` pallet
+
+Each pallet exposes an interface that allows you to work with a token, and each function usually takes asset id as parameter. 
+Eg. transfer function:
+https://github.com/open-web3-stack/open-runtime-module-library/blob/91942bcc134c5f073b3198d2eb9ebdec48d8547f/tokens/src/lib.rs#L490
+
+In hydradx, to have a token that can be used on our chain - we require this token to be first registered in our asset registry. There we store additional information for each asset - such as symbol, decimals, existential deposit, origin location etc.
+
+
+[02/13/2024 11:10] ultimate_outsider (pinned)
+XCM - cross chain transfers
+You probably heard that in polkadot you can send tokens between parachains. 
+question you might be now asking is: how does that work ? since each chain can represent a token differently? how do they know ?
+
+Every token which can be cross chain transferred has a unique identifier that determiens where is the origin of this token. 
+EG.
+`MultiLocation {
+      parents: 1
+      interior: {
+        X2: [
+          {
+            Parachain: 2,026
+          }
+          {
+            PalletInstance: 2
+          }
+        ]
+      }
+}`
+
+this tells you that this token is on parachain 2026, identified by PalletInstance: 2 on their chain. 
+
+So when you want to transfer some token amount from parachain A to parachain B - parachain A sends XCM message, saying something like:
+*"Hey, this user wants to transfer token with this location and this amount to your chain".*
+
+Parachain B receives this message, maps the location to its internal asset representation ( in our case, it would be the u32 type), and mints the amount to user's address.
+
+TLDR: instead of each token having a smart contract, you have one pallet to handle each asset. You decided how you want to represent an asset in your chain.
+
+{Reactions}
+🙏 (11) 
+
+[02/13/2024 12:32] kartoonjoy
+Pinned a message.
+
+
+[02/14/2024 13:46] carrotsmuggler
+Whats the purpose of the hooks `call_on_liquidity_change_hook` and `call_on_trade_hook` in stableswap? The functions they call are empty and just return Ok()
+
+
+[02/14/2024 14:12] kartoonjoy
+@💼sponsors
+
+
+[02/14/2024 14:16] ultimate_outsider
+they are not empty - they call the hook implementation.  whatever is there set , it is called.
+
+
+[02/14/2024 16:58] carrotsmuggler
+Where are the hooks implemented? In the types.rs it just returned ok(). Are the hook functions in scope as well?
+
+
+[02/14/2024 17:17] theschnilch
+You can find the implementation in runtime/adapters/lib.rs in the StableswapHooksAdapter struct.
+
+{Reactions}
+👍🏽 
+
+[02/15/2024 20:56] theschnilch
+The stableswap pool has the function calculate_y_internal. What is Y?
+
+
+[02/15/2024 21:07] ultimate_outsider
+it is basically reserve of an asset in the pool.
+
+{Reactions}
+👍 
+
+[02/16/2024 17:20] yashar0x
+Hey guys
+Just to clarify
+Here 👇 `hub_reserve` = total LRNAs matching this asset and `shares` = LRNAs owned by the LP, right?
+```
+pub struct AssetReserveState<Balance> {
+    /// Quantity of asset in omnipool
+    pub reserve: Balance,
+    /// Quantity of Hub Asset matching this asset
+    pub hub_reserve: Balance,
+    /// Quantity of LP shares for this asset
+    pub shares: Balance,
+    /// Quantity of LP shares for this asset owned by protocol
+    pub protocol_shares: Balance,
+    /// Asset's weight cap
+    pub cap: u128,
+    /// Asset's trade state
+    pub tradable: Tradability,
+}
+```
+
+
+[02/16/2024 17:53] ultimate_outsider
+Shares is total shares including protocol shares
+
+{Reactions}
+🙏 
+
+[02/16/2024 18:59] ultimate_outsider
+for all .. note that i updated this pinned message. https://discord.com/channels/810916927919620096/1201573510183653406/1203812588618649652
+
+I honestly forgot that we added filter for all assets.
+
+{Reactions}
+👍 
+
+[02/16/2024 20:02] theschnilch
+Does this also apply to stable pools?
+
+
+[02/18/2024 11:44] carrotsmuggler
+what about stableswap? can you send tokens to that?
+
+
+[02/18/2024 12:41] carrotsmuggler
+@Martin Also, you have to transfer tokens into the omnipool account before calling `add_token`, right? so how does that work if transfers are blocked to the omnipool account?
+
+
+[02/18/2024 14:30] ultimate_outsider
+yes, you can
+
+you cannot sent to omnipool account only if such token alrady exists in there, otherwise you can
+
+{Reactions}
+👍🏽 
+
+[02/21/2024 08:10] zzebra83
+@Martin please check DM, thanks!
+
+
+[02/21/2024 08:47] ultimate_outsider
+one clarification. I got few questions why in the spec there is TVL cap check in add liquidity but it is not in the code.
+
+the spec provided is as it was originally designed. however the tvl cap check was remove on 15th of november as it is no longer needed, weight cap of an asset is sufficient.
+
+PR of tvl removal if interested: https://github.com/galacticcouncil/HydraDX-node/pull/697
+
+Spec will be updated to reflect this change too.
+
+
+[02/21/2024 14:34] minh___
+@Martin  Trying to run `curl https://getsubstrate.io -sSf | bash -s -- --fast` and get
+
+`E: Unable to locate package protobuf`
+
+Tried to unsuccessfully fix it with these commands:
+
+```
+ 1374  sudo apt install protobuf-compiler libprotobuf-dev
+ 1378  apt-cache search protobuf
+ 1379  sudo apt-get install protobuf-compiler
+ 1380  sudo apt install python3-protobuf
+ 1384  sudo apt-get install -y protobuf-compiler
+ 1385  sudo apt-get install -y libprotobuf-dev
+```
+
+Any guidance?
+
+
+[02/21/2024 15:02] carrotsmuggler
+did `protobuf-compiler` not work? theres also a snap package which i used
+
+
+[02/21/2024 15:12] minh___
+installation worked, but didnt solve the `E: Unable to locate package protobuf` issue for me 🤔
+
+
+[02/21/2024 15:35] carrotsmuggler
+yea prtobuf is not on apt anymore. What i did was copy the script from the url, removed protobuf, and then ran it again
+
+
+[02/21/2024 15:35] minh___
+thats what I am doing right now and its running 😄
+Thanks for sharing/confirming 🙏
+
+{Reactions}
+👍🏽 
+
+[02/21/2024 15:47] minh___
+This looks like a crate has changed and now compilation is broken 🥲
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/image-B920F.png
+
+
+[02/21/2024 21:23] carrotsmuggler
+@Martin please check DM thanks!
+
+
+[02/21/2024 23:42] minh___
+@Martin @cl0w  would like you to look check this out when you are available, one of the dependencies broke I suppose
+
+
+[02/22/2024 08:12] ultimate_outsider
+Started a thread.
+
+
+[02/22/2024 10:49] carrotsmuggler
+@Martin I want to run a test for a POC. I can run `cargo build --release` and have it finish successfully, but when i run `cargo test` i get this error: 
+```
+error: failed to run custom build command for `gmp-mpfr-sys v1.6.1`
+Caused by:                                                                                                                                                                                                         
+  process didn't exit successfully:
+--- stderr
+  configure: error: No usable m4 in $PATH or /usr/5bin (see config.log for reasons).
+  thread 'main' panicked at 'Program failed with code 1:
+```
+
+
+[02/22/2024 10:55] ultimate_outsider
+well, the error is pretty self explanatory - No usable m4 in $PATH .  try to install it -> apt-get install m4
+
+
+[02/22/2024 16:52] glorys3c
+Is there any resource on how these functions get called by user, in polkadot ecosystem?
+cc: @Martin
+
+
+[02/22/2024 17:04] ultimate_outsider
+not clear what functions  you mean
+
+
+[02/22/2024 17:38] qiuhaoli
+Do you mean the "public/external" functions in EVM/solidity? They are "dispatchable functions" in polkadot, and you can find them in the impl of "#[pallet::call]" (those functions return `DispatchResult`).
+
+
+[02/22/2024 17:39] qiuhaoli
+FYI: https://wiki.polkadot.network/docs/learn-account-abstraction#origin-abstraction-in-polkadot
+
+
+[02/22/2024 20:42] theschnilch
+Is HydraDX Council the AuthorityOrigin?
+
+
+[02/23/2024 07:17] ultimate_outsider
+You can check runtime config what It is set to
+
+Not sure which you referring to, but I believe it is set to root
+ 
+We usually have root, council or technical committee as possible special origins
+
+
+[02/25/2024 01:15] deki04
+is there a way to 'run' this code? Or is it only interactable via the tests?
+
+
+[02/25/2024 06:09] ultimate_outsider
+You can run a node locally and Interact with it via a web interface
+
+{Reactions}
+👍 
+
+[02/25/2024 10:16] franfran5067
+Is the council not behind any origin role ? Is there any governance to execute changes to the code or is that the autority which is the root of the parachain ?
+
+
+[02/25/2024 10:46] ultimate_outsider
+no, council is just another possible origin that you can execute extrinsics with. 
+
+Code changes can be executed only with root origin.  Since in HydraDx, we  dont have sudo module ( module where you can set one account to act as root origin),  authorize upgrade extrinsic must go through democracy, meaning that such proposal must be approved first.
+
+{Reactions}
+thankyou 
+
+[02/25/2024 12:36] minh___
+How or where is the root set?
+
+I was able to find out where the origin is checked to be root:
+
+```rs
+    fn try_origin(o: O) -> Result<Self::Success, O> {
+        o.into().and_then(|o| match o {
+            RawOrigin::Root => Ok(()),
+            r => Err(O::from(r)),
+        })
+    }
+```
+
+But I cant figure out how it is determined when origin is the RawOrigin::Root variant
+
+
+[02/25/2024 15:07] ultimate_outsider
+it is not set. you have certain mechanism which can dispatch a call with root origin.   so you have to use of those. 
+
+As I mentioned previously, one of the easiest way is to use sudo pallet.  With this pallet, you can choose an account that can act as root and dispatch calls with root orgiin. 
+
+here: https://github.com/paritytech/polkadot-sdk/blob/de6d02591b57d03f70ed8db0c674f045ad2ea029/substrate/frame/sudo/src/lib.rs#L207
+
+but this is only useful, ege in development. Using this pallet, it is not decentralised and you give lot of power to one account. So whoever owns it, can do anything. 
+
+In HydraDX, obviously we dont have  this pallet. Note that if you had a running parachain, and wanted to interact with other chains, and you still had sudo access on your chain - HydraDX and most of other parachain would not allow it until you remove the sudo access.
+
+So, now , question you have: how else I can dispatch as root ? 
+
+again as mentioned,  through democracy. 
+
+https://github.com/paritytech/polkadot-sdk/blob/de6d02591b57d03f70ed8db0c674f045ad2ea029/substrate/frame/democracy/src/lib.rs#L1611
+
+if you look how this pallet works , you 'd understand. but briefly - you propose something , referendum happens, token holders vote, and if approved, it is executed = with ROOT origin.
+
+{Reactions}
+👏 (3) 🙏 
+
+[02/25/2024 15:28] minh___
+very clear and helpful, thanks! 👍
+
+
+[02/25/2024 22:54] oceansky
+Guys, is cargo test -p pallet-stableswap  working for you? I m having errors in compilation
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/image-6F2B0.png
+
+
+[02/25/2024 22:56] minh___
+yes, works fine for me
+
+{Reactions}
+👍 
+
+[02/25/2024 22:56] minh___
+maybe wrong directory? cant think of anything else
+
+
+[02/25/2024 23:12] franfran5067
+can you `cargo check` ?
+
+
+[02/25/2024 23:43] oceansky
+This is what i found after cargo check
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/image-A5E7F.png
+
+
+[02/25/2024 23:44] oceansky
+only stableswap is affected, seems weird.
+
+
+[02/26/2024 00:26] minh___
+it wont compile because you use light mode
+
+{Reactions}
+😅 (3) 
+
+[02/26/2024 00:26] minh___
+thats gotta be it
+
+
+[02/26/2024 01:03] franfran5067
+These modules are in the `pallets/stableswap/src/lib.rs` file. Are you sure that you sure that you got em ?
+
+{Reactions}
+👍 
+
+[02/26/2024 01:04] franfran5067
+Maybe that the pallet macro isn't expanding for some reason
+
+
+[02/26/2024 02:33] oceansky
+thank you seems working now
+
+
+[02/26/2024 02:34] oceansky
+for some weird reason ,  my file is missing "vec"
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/image-558E3.png
+
+
+[02/26/2024 08:06] franfran5067
+Probably some innocent delete 😉
+
+{Reactions}
+😅 
+
+[02/26/2024 11:50] minh___
+@Martin curious what setup/IDE you usually work with?  VsCode + RustAnalyzer seems to have trouble with the Substrate Framework, specifically finding references
+
+
+[02/26/2024 12:04] ultimate_outsider
+substrate is heavy for everything .and because it uses lots of macros and traits - sometimes it is hard for any ide to find what you want to see.  i dont use vscode, but many epople do, so it should be fine, 
+
+what specifically you find hard to find ?
+
+
+[02/26/2024 12:32] minh___
+Had different issues, but 2 examples:
+
+```rs
+impl pallet_omnipool::Config for Runtime {
+    type RuntimeEvent = RuntimeEvent;
+    type AssetId = AssetId;
+    type Currency = Currencies;
+```
+
+Here I cant jump to the type declarations, e.g. where `Currencies` is defined. Eventually I figured out by using global search that its in runtime/[...]/lib.rs :
+
+```rs
+Currencies: pallet_currencies = 79,
+```
+
+And here I was trying to jump to the declaration of `pallet_currencies`. I do of course understand that this refers to the `currencies` pallet/library, its just that navigation isnt working for me. For now I can wrap my head around it somehow, was just hoping that maybe there was some setup with a better experience
+
+
+[02/26/2024 12:37] ultimate_outsider
+this is all macros, thats why. Currencies are created by a macro.  
+
+my ide works fine with your second example - i can jump to pallet_currencies from there.
+
+{Reactions}
+👍 
+
+[02/26/2024 12:43] minh___
+interesting, only works for me if go to another occurrence, such as:
+
+`use pallet_currencies::BasicCurrencyAdapter;`
+
+I will make do with it somehow, appreciate the insights 🙂
+
+
+[02/26/2024 15:52] acegawd
+Sent a msg in a private thread @Martin
+
+
+[02/26/2024 19:50] 0xarsi
+Do we have to have a PoC involving a test on a live local node for every finding?
+
+
+[02/26/2024 22:30] theschnilch
+is the initial_price in the omnipool used to correct the decimal differences between the assets?
+
+
+[02/27/2024 08:12] zzebra83
+Hi @Martin sent a DM, thanks!
+
+
+[02/27/2024 08:31] ultimate_outsider
+deinitely helps. if you claim that there is an issue, proving it with working exploit is defenitaly someting we would like to see. Note that it must work with runtime configuration, not the mock/test runtime
+
+{Reactions}
+👍 
+
+[02/27/2024 08:32] ultimate_outsider
+initial price is used when you add new token to omnipool, it is the price of token and lrna
+
+{Reactions}
+👍 
+
+[02/27/2024 08:39] ultimate_outsider
+or even better would be to write a script that works against running local node - using chopstikcs
+
+{Reactions}
+👍 
+
+[02/27/2024 18:10] minh___
+`let (amount_hp, shares_hp, reserve_hp) = to_u256!(amount, asset_state.shares, asset_state.reserve);`
+
+what does hp stand for here?
+
+
+[02/27/2024 18:29] 0xarsi
+high precision I assume
+
+{Reactions}
+👍 
+
+[02/27/2024 19:10] acegawd
+Where's the call made to the protocol account to add tokens before calling https://github.com/code-423n4/2024-02-hydradx/blob/603187123a20e0cb8a7ea85c6a6d718429caad8d/HydraDX-node/pallets/omnipool/src/lib.rs#L447 @Martin
+
+{Embed}
+https://github.com/code-423n4/2024-02-hydradx/blob/603187123a20e0cb8a7ea85c6a6d718429caad8d/HydraDX-node/pallets/omnipool/src/lib.rs
+2024-02-hydradx/HydraDX-node/pallets/omnipool/src/lib.rs at 6031871...
+Contribute to code-423n4/2024-02-hydradx development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/8ebee644-1e72-43af-af40-3c22a948642b-BCEC2
+
+
+[02/27/2024 21:16] ultimate_outsider
+what  you mean by call to the protocol account ? 
+
+if you mean "transfer to protocol account" - this has to be done manually before calling add token .
+
+
+[02/27/2024 21:18] acegawd
+Yes a transfer to the protocol account but done manually how?
+
+
+[02/27/2024 21:18] ultimate_outsider
+the same way you transfer any other tokens. usually it would be Tokens::transfer call.
+
+{Reactions}
+👍 
+
+[02/28/2024 13:38] theschnilch
+https://github.com/code-423n4/2024-02-hydradx/blob/603187123a20e0cb8a7ea85c6a6d718429caad8d/HydraDX-node/integration-tests/src/polkadot_test_net.rs#L559C1-L573C2 Shouldn't on_finalize and on_initialize also be called for the Circuit Breaker in this function? @Martin
+
+{Embed}
+https://github.com/code-423n4/2024-02-hydradx/blob/603187123a20e0cb8a7ea85c6a6d718429caad8d/HydraDX-node/integration-tests/src/polkadot_test_net.rs
+2024-02-hydradx/HydraDX-node/integration-tests/src/polkadot_test_ne...
+Contribute to code-423n4/2024-02-hydradx development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/8ebee644-1e72-43af-af40-3c22a948642b-BCEC2
+
+
+[02/28/2024 13:53] ultimate_outsider
+Yes, it can be added if you need to.
+
+{Reactions}
+👍 
+
+[02/29/2024 00:04] acegawd
+I'm getting this error,how can I resolve this ? @Martin
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/IMG_20240228_190351-61305.jpg
+
+
+[02/29/2024 00:45] ultimate_outsider
+the wasm is in different dicrectory. but you can comment out the the wasm-override in the config., you dont really need
+
+
+[02/29/2024 00:46] acegawd
+In which config @Martin ?
+
+
+[02/29/2024 00:47] ultimate_outsider
+what is the command that you run ?
+
+
+[02/29/2024 00:48] acegawd
+`npx @acala-network/chopsticks@latest --config=launch-configs/chopsticks/hydradx.yml `
+
+
+[02/29/2024 00:48] ultimate_outsider
+so this is the config 
+ --config=launch-configs/chopsticks/hydradx.yml
+
+
+[02/29/2024 00:49] acegawd
+So what am I supposed to be removing from that command?
+
+
+[02/29/2024 00:50] ultimate_outsider
+open the file and remove the wasm-overide line
+
+
+[02/29/2024 00:57] acegawd
+Should the file have this exact name?
+
+
+[02/29/2024 01:00] ultimate_outsider
+just delete from the file , and it will work. unfortunately, it is outdated config which does not work with latest versions. 
+
+somewhere here in the channel, i posted updated config
+
+
+[02/29/2024 01:01] ultimate_outsider
+https://discord.com/channels/810916927919620096/1201573510183653406/1205076542334697514
+
+{Reactions}
+👍 
+
+[03/01/2024 02:50] yongkiws
+This contest ends? I saw link does not exist
+
+
+[03/01/2024 02:54] itsmetechjay (pinned)
+ℹ️ Hey all, we are experiencing a problem where the audit page is not showing.  We are working on this with our devs.  In the meantime, you can still view the repo directly on Github: https://github.com/code-423n4/2024-02-hydradx
+
+We are working to get this resolved as quickly as we can.
+
+{Embed}
+https://github.com/code-423n4/2024-02-hydradx
+GitHub - code-423n4/2024-02-hydradx
+Contribute to code-423n4/2024-02-hydradx development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/8ebee644-1e72-43af-af40-3c22a948642b-BCEC2
+
+{Reactions}
+thankyou 
+
+[03/01/2024 02:54] itsmetechjay
+Pinned a message.
+
+
+[03/01/2024 03:19] itsmetechjay
+ℹ️ Issue is resolved now.  You should be able to access the audit page and submission form.
+
+
+[03/01/2024 15:54] acegawd
+@Martin check private thread
+
+
+[03/01/2024 20:00] j4x_98
+Gg everyone 🤝
+
+{Reactions}
+👍 
+
+[03/01/2024 20:00] castle_chain
+Gg
+
+{Reactions}
+👍 
+
+[03/01/2024 20:01] castle_chain
+excited to see how many submissions
+
+
+[03/01/2024 20:01] j4x_98
+Same
+
+
+[03/01/2024 20:01] j4x_98
+Cairo had about 200 afaik
+
+
+[03/01/2024 20:01] j4x_98
+Would be interesting if more or less
+
+
+[03/01/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺wardens The **HydraDX** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the audit is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest-Admin if you have questions along the way!
+
+
+[03/01/2024 20:02] castle_chain
+is there anyone open to discuss the finding the he submitted and mine ?
+
+
+[03/01/2024 20:02] castle_chain
+i think this will have more
+
+
+[03/01/2024 20:05] qiuhaoli
+First time doing a rust audit, only found like two M that are really interesting 🙂
+
+{Reactions}
+👍 👏 
+
+[03/01/2024 20:06] qiuhaoli
+Also huge thanks to @Martin  who is always willing to answer my dumb questions🥹
+
+{Reactions}
+🔥 
+
+[03/01/2024 20:08] castle_chain
+me too , I asked him so much questions and he answered all of them , @Martin thanks
+
+{Reactions}
+✅ (2) 
+
+[03/01/2024 20:10] castle_chain
+I found like 3 , with poc and i am a little bit sure about .
+
+{Reactions}
+👍 (2) 👏 
+
+[03/01/2024 20:10] castle_chain
+great work , mate
+
+{Reactions}
+👍 ❤️ 
+
+[03/01/2024 20:11] qiuhaoli
+haha I finished reports at the last minute, so many of them will be low-quality (sorry lookout!)
+
+{Reactions}
+😂 
+
+[03/01/2024 20:11] castle_chain
+😂 😂
+
+
+[03/01/2024 20:12] castle_chain
+will you do phala contest ?
+
+
+[03/01/2024 20:12] qiuhaoli
+Emmm.. why not?
+
+
+[03/01/2024 20:14] castle_chain
+after this long time with substrate , I think I should take this advantage and perticipate in phala .
+
+{Reactions}
+✅ (3) 
+
+[03/01/2024 20:40] castle_chain
+only 205 issues submitted
+
+
+[03/01/2024 20:40] j4x_98
+160 if you only calc H/M
+
+
+[03/01/2024 20:43] forgebyola
+Fair enough
+
+
+[03/01/2024 20:44] forgebyola
+Valid issues would be quite rewarding for this one
+
+
+[03/01/2024 20:50] j4x_98
+If you look at their [Immunefi](https://immunefi.com/bounty/hydradx/) even one valid Med would have been nice money
+
+{Embed}
+https://immunefi.com/bounty/hydradx/
+HydraDX Bug Bounties | Immunefi
+Find bugs and vulnerabilities on HydraDX and get paid up to $250,000.
+Code4rena - ARCHIVE-Q1-2024 - hydradx-feb2 [1201573510183653406].txt_Files/82298
+
+
+[03/01/2024 20:52] forgebyola
+Oh so if one confirms a med here they can definitely go on to immunefi to submit there also I think
+
+
+[03/01/2024 20:57] j4x_98
+They will probably put the results oos
+
+
+[03/01/2024 20:57] ultimate_outsider
+you cant.  the pallets in C4 contest scope have been removed from imunnefi bounty scope.
+
+{Reactions}
+👍 (3) 
+
+[03/01/2024 20:58] j4x_98
+Will the pallets return to immunefi once the results are fixed @Martin?
+
+
+[03/01/2024 20:59] ultimate_outsider
+yes. only after the results are resolved and public .
+
+{Reactions}
+👍 
+
+[03/01/2024 21:20] castle_chain
+How will be the judge ?
+
+
+[03/01/2024 21:29] forgebyola
+okay that makes total sense
+
+
+[03/01/2024 21:31] cl0w
+Thanks everyone, hope you had fun on your Rust journey
+
+{Reactions}
+👌 (6) ❤️ (3) 
+
+[03/01/2024 21:33] cl0w
+We have 2 more Polkadot / substrate audits lined up: Phala (started today), and Acala (staring in 3 weeks)
+
+
+[03/01/2024 21:34] cl0w
+If you have any feedback on how we can make your onboarding into Rust and Substrate easier, please share it with us
+
+{Reactions}
+🔥 
+
+[03/10/2024 21:50] castle_chain
+When will PJQA be opened ??
+
+
+[03/10/2024 21:51] castle_chain
+I think that the judge has finished his work
+
+
+[03/11/2024 10:07] xyzbtchunt
+Any update?
+
+
+[03/11/2024 18:21] 0xpopeye
+how many submissions?
+
+
+[03/11/2024 20:20] castle_chain
+205
+
+{Reactions}
+✅ (2) 
+
+[03/18/2024 14:04] xyzbtchunt
+When
+
+
+[03/18/2024 16:40] thebrittfactor
+🤑 🎉 Awards for **HydraDX**:
+
+$23,597.20 USDC » @J4X
+$21,555.12 USDC » @castle_chain
+$8,911.28 USDC » @bin2chen
+$7,861.35 USDC » @TheSchnilch
+$7,510.89 USDC » @carrotsmuggler
+$5,445.53 USDC » @QiuhaoLi
+$1,879.93 USDC » @3DOC
+$1,464.35 USDC » @tsvetanovv
+$1,367.40 USDC » @oakcobalt
+$1,291.82 USDC » @hunter_w3b
+$993.71 USDC » @popeye
+$302.93 USDC » @zhaojie
+$293.95 USDC » Franfran
+$293.95 USDC » @ZanyBonzy
+$175.73 USDC » @CodeCipher
+$152.74 USDC » @DadeKuma
+$152.74 USDC » @emerald7017
+$152.74 USDC » @erebus
+$150.19 USDC » @Ocean_Sky
+$150.19 USDC » @Alix40
+$150.19 USDC » @alkrrrrp
+$150.19 USDC » @peachtea3471
+$118.22 USDC » @0xSmartContract
+$118.22 USDC » @Fouzantanveer
+$118.22 USDC » @kaveyjoe
+$118.22 USDC » @yongskiws
+$22.99 USDC » @ihtishamsudo
+
+🏁 Findings summary
+-------------------------------------- 
+High risk findings: 1 unique (2 total)
+Med risk findings: 10 unique (30 total)
+QA reports: 18 (Best: castle_chain)
+Advanced analysis reports: 11 (Best: hunter_w3b)
+
+Awards will be distributed on Polygon within the next week. Congratulations all! 💸 💸 💸
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+{Reactions}
+✅ 
+
+[03/18/2024 16:41] kaveyjoe
+@J4X  Congratulations 🎉
+
+
+[03/18/2024 16:43] j4x_98
+Gg everyone, and thx to the HydraDX team for answering so many questions from me 😅
+
+
+[03/18/2024 16:43] j4x_98
+Thx 😊
+
+
+[03/18/2024 16:43] 0xpopeye
+@J4X bro congrats
+
+
+[03/18/2024 16:43] j4x_98
+Also congrats to @castle_chain who found the high 🫡
+
+{Reactions}
+👍 (2) 
+
+[03/18/2024 16:44] j4x_98
+Thanks 🫡
+
+{Reactions}
+👍 (2) 
+
+[03/18/2024 16:47] 0xsmartcontractsamurai
+Well done everyone. 🚀 
+
+Ive submitted two QA findings and one quality medium severity report. But I'm not in the awards list? I suspect my medium severity finding was misunderstood as its definitely a logic bug.
+
+
+[03/18/2024 16:55] dadekuma
+I missed PJQA, and my issue was a duplicate of a rare med, but it was incorrectly duped; RIP
+
+{Reactions}
+😭 (3) empathy 
+
+[03/18/2024 17:18] castle_chain
+thanks sir , I am very happy with the results 😆
+
+{Reactions}
+❤️ 
+
+[03/18/2024 17:28] castle_chain
+GG for eveyone
+
+
+[03/18/2024 17:44] castle_chain
+@carrotsmuggler  congratulations  sir , I learnt a lot from your submissions 🫡
+
+
+[03/18/2024 17:45] carrotsmuggler
+hey same from yours!
+
+{Reactions}
+👍 
+
+[03/18/2024 18:14] alkrrrrp
+Congratulations! @castle_chain, this is my first attempt to audit and I have learned a lot from your tweet. Also, I wonder is there a way to review other's submissions before the report is published?
+
+
+[03/18/2024 18:14] ladboy233
+@J4X Congrats
+
+
+[03/18/2024 18:15] j4x_98
+Thanks 🫡
+
+
+[03/18/2024 22:13] oceansky
+Congrats to everyone!, proud to be part of the very first substrate contest in C4, wew :chefskiss:  The experience is both hard and sweet , still got 150 usd from this not bad at all haha
+
+
+[03/18/2024 22:50] castle_chain
+Thanks sir , Unfortunately, there is no way to read the submissions before the final report if you do not have backstage role , Keep working to get it , and I am sure that you can do .
+
+{Reactions}
+👍 
+
+[03/19/2024 00:19] shealtielanz
+@castle_chain killed this one 🔥 Congrats to you champ 🔥
+
+{Reactions}
+❤️ 
+
+[03/19/2024 00:30] castle_chain
+thanks sir ❤️
+
+{Reactions}
+❤️ 
+
+[03/22/2024 20:07] flutter_developer
+@hunter_w3b  congrates
+
+{Reactions}
+👍🏻 
+
+[03/22/2024 21:10] itsmetechjay
+ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted on Friday, 29 March 2024. Please make sure to grab anything you might need before then.
+
+
+[03/28/2024 21:23] itsmetechjay
+ℹ️ Reminder: this channel will be deleted in 24 hours.
+
+
+==============================================================
+Exported 211 message(s)
+==============================================================
